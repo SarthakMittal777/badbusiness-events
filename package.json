@@ -1,0 +1,15 @@
+{
+  "name": "event-management",
+  "version": "1.0.0",
+  "description": "event-management",
+  "main": "index.js",
+  "repository": "https://github.com/arpankumarde/event-management",
+  "author": "arpankumarde <134305585+arpankumarde@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "client": "cd client && yarn dev",
+    "server": "cd server && nodemon",
+    "build": "cd client && vite build"
+  }
+}
