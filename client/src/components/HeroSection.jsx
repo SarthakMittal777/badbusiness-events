@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <section className="flex flex-col gap-6 lg:gap-10 md:flex-row items-center justify-center min-h-screen my-4 md:w-4/5 mx-auto">
       <div className="flex flex-col gap-6 text-center md:text-left flex-1 md:pl-4">
-        <h1 className="text-xl font-semibold">BB Events</h1>
+        <h2 className="text-xl font-semibold">BB Events</h2>
         <p className="text-7xl font-semibold text-gray-100">
           Delightful <br />
           events that <br />
@@ -20,7 +20,8 @@ const HeroSection = () => {
         </p>
         <Link
           to="/explore"
-          className="flex items-center bg-white shadow-md shadow-gray-400 hover:shadow-gray-300 rounded-md px-6 py-2 text-black font-semibold w-fit mx-auto md:ml-0 select-none">
+          className="flex items-center bg-white shadow-md shadow-gray-400 hover:shadow-gray-300 rounded-md px-6 py-2 text-black font-semibold w-fit mx-auto md:ml-0 select-none"
+        >
           Explore Events
           <GoArrowUpRight className="-mb-0.5 font-bold" size={20} />
         </Link>
