@@ -269,14 +269,25 @@ const AllEvents = () => {
       banner: "https://source.unsplash.com/1600x900/?event",
     },
   ]);
+
+  // const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // server.get("/events").then((res) => {
-    //   setEvents(res.data);
-    setLoading(false);
-    // });
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   server
+  //     .get("/events/all")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setEvents(res.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       alert("Failed to fetch events");
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   return (
     <div className="text-center">
@@ -293,7 +304,7 @@ const AllEvents = () => {
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-6 py-4">
-        {loading && <p>Loading...</p>}
+        {/* {loading && <p>Loading...</p>} */}
         {events?.map((event) => (
           <EventCard key={event.slug} event={event} />
         ))}

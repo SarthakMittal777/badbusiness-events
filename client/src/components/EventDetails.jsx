@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import Linkify from "linkify-react";
 import { Link } from "react-router-dom";
 import { server } from "../api";
 import { GoLocation } from "react-icons/go";
 
-const EventDetails = ({ slug }) => {
+const EventDetails = () => {
   const [events, setEvents] = useState([
     {
       slug: "event-1",
@@ -69,18 +71,26 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "SV Polytechnique College, Mumbai",
       banner: "https://source.unsplash.com/1600x900/?business",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-3",
       title: "Event 3",
       description:
-        "Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 ",
+        "Description of Event 3 github.com Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 ",
       date: "2024-12-11",
       time: "12:00",
       type: "Virtual",
       platform: "Google Meet",
       venue: "",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-4",
@@ -92,6 +102,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "NP College, Delhi",
       banner: "https://source.unsplash.com/1400x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-5",
@@ -103,6 +117,10 @@ const EventDetails = ({ slug }) => {
       platform: "Zoom",
       venue: "",
       banner: "https://source.unsplash.com/1600x900/?business",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-6",
@@ -114,6 +132,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "SV Polytechnique College, Mumbai",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-7",
@@ -125,6 +147,10 @@ const EventDetails = ({ slug }) => {
       platform: "Google Meet",
       venue: "",
       banner: "https://source.unsplash.com/1200x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-8",
@@ -136,6 +162,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "NP College, Delhi",
       banner: "https://source.unsplash.com/1600x900/?tech",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-9",
@@ -147,6 +177,10 @@ const EventDetails = ({ slug }) => {
       platform: "Zoom",
       venue: "",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-10",
@@ -158,6 +192,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "SV Polytechnique College, Mumbai",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-11",
@@ -169,6 +207,10 @@ const EventDetails = ({ slug }) => {
       platform: "Google Meet",
       venue: "",
       banner: "https://source.unsplash.com/1600x900/?startup",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-12",
@@ -180,6 +222,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "NP College, Delhi",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-13",
@@ -191,6 +237,10 @@ const EventDetails = ({ slug }) => {
       platform: "Zoom",
       venue: "",
       banner: "https://source.unsplash.com/1600x950/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-14",
@@ -202,6 +252,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "SV Polytechnique College, Mumbai",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-15",
@@ -213,6 +267,10 @@ const EventDetails = ({ slug }) => {
       platform: "Google Meet",
       venue: "",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-16",
@@ -224,6 +282,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "NP College, Delhi",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-17",
@@ -235,6 +297,10 @@ const EventDetails = ({ slug }) => {
       platform: "Zoom",
       venue: "",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-18",
@@ -246,6 +312,10 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "SV Polytechnique College, Mumbai",
       banner: "https://source.unsplash.com/1600x1000",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-19",
@@ -257,6 +327,10 @@ const EventDetails = ({ slug }) => {
       platform: "Google Meet",
       venue: "",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
     {
       slug: "event-20",
@@ -268,16 +342,25 @@ const EventDetails = ({ slug }) => {
       platform: "",
       venue: "NP College, Delhi",
       banner: "https://source.unsplash.com/1600x900/?event",
+      attendees: 0,
+      speakers: [],
+      hosts: [],
+      sponsors: [],
     },
   ]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // server.get(`/events/${slug}`).then((res) => {
-    //   setEvents(res.data);
-    setLoading(false);
-    // });
-  }, []);
+  // const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { slug } = useParams();
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   server.post(`/events/`, { slug }).then((res) => {
+  //     console.log(res.data);
+  //     setEvents(res.data);
+  //     setLoading(false);
+  //   });
+  // }, [slug]);
 
   const event = events.find((event) => event.slug === slug);
   const monthNames = [
@@ -304,9 +387,16 @@ const EventDetails = ({ slug }) => {
     "Saturday",
   ];
 
+  const linkifyOptions = {
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "text-blue-400",
+  };
+
   return (
-    <div className="w-full md:w-8/12 bg-white/10 mx-auto rounded-md md:p-8">
+    <div className="w-full md:w-8/12 md:bg-white/10 mx-auto rounded-md md:p-8">
       {/* <Link to="/explore">Back to Explore</Link> */}
+      {/* {loading && <p>Loading...</p>} */}
       <div className="flex flex-col gap-8 md:flex-row">
         <div className="">
           <img
@@ -336,12 +426,12 @@ const EventDetails = ({ slug }) => {
               </a>
             ))}
             {event?.hosts?.length === 0 && (
-              <div className="text-gray-200">No Speakers</div>
+              <div className="text-gray-200">Not Revealed</div>
             )}
           </div>
           <div
             className={`flex flex-col py-4 border-t border-white/20 ${
-              event?.hosts.length == 0 ?? "hidden"
+              event?.hosts?.length == 0 ?? "hidden"
             }`}
           >
             <h3 className="text-xl font-semibold">Hosts</h3>
@@ -365,12 +455,12 @@ const EventDetails = ({ slug }) => {
               </a>
             ))}
             {event?.hosts?.length === 0 && (
-              <div className="text-gray-200">No Hosts</div>
+              <div className="text-gray-200">Not Revealed</div>
             )}
           </div>
           <div
             className={`border-t border-white/20 pt-4 ${
-              event?.attendees.length == 0 ?? "hidden"
+              event?.attendees?.length == 0 ?? "hidden"
             }`}
           >
             <h3 className="text-xl font-semibold">Attendees</h3>
@@ -379,6 +469,7 @@ const EventDetails = ({ slug }) => {
                 `${event?.attendees} ${
                   event?.type == "Virtual" ? "Attending" : "Going"
                 }`}
+              {event?.attendees == 0 && "No Attendees Yet"}
             </p>
           </div>
         </div>
@@ -390,7 +481,7 @@ const EventDetails = ({ slug }) => {
             <div className="flex justify-center items-center gap-4">
               <div className="text-center">
                 <div className="border border-white/30 bg-white/30 rounded-t-md uppercase text-[0.5rem] font-bold w-10 h-4">
-                  {monthNames[new Date(event?.date).getDay()].slice(0, 3)}
+                  {monthNames[new Date(event?.date).getDay()]?.slice(0, 3)}
                 </div>
                 <div className="w-10 border-x border-b border-white/40 rounded-b-md h-6">
                   {new Date(event?.date).getDate()}
@@ -421,9 +512,12 @@ const EventDetails = ({ slug }) => {
               </div>
             </div>
           </div>
+
           <div className="pt-4">
             <h2 className="text-2xl font-semibold text-gray-200">About</h2>
-            <p>{event?.description}</p>
+            <Linkify as="p" options={linkifyOptions}>
+              {event?.description}
+            </Linkify>
           </div>
         </div>
       </div>
