@@ -12,7 +12,10 @@ const AllEvents = () => {
       .get("/api/v1/event")
       .then((res) => {
         console.log(res.data);
-        setEvents(res.data.events);
+        const filteredEvents = res.data.events.filter(
+          (event) => event.status !== "declined"
+        );
+        setEvents(filteredEvents);
         setLoading(false);
       })
       .catch((err) => {
