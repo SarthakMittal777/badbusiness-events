@@ -2,356 +2,28 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Linkify from "linkify-react";
 import { Link } from "react-router-dom";
-import { server } from "../api";
+import axios from "axios";
 import { GoLocation } from "react-icons/go";
+import { server } from "../api";
 
 const EventDetails = () => {
-  const [events, setEvents] = useState([
-    {
-      slug: "event-1",
-      title: "Event 1",
-      description: "Description of Event 1",
-      date: "2024-04-02",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Zoom",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 10,
-      speakers: [
-        {
-          name: "John Doe",
-          avatar: "https://source.unsplash.com/100x100/?person",
-          description: "CEO, XYZ Company",
-          profile: "https://linkedin.com/in/",
-        },
-        {
-          name: "John Doe",
-          avatar: "https://source.unsplash.com/200x200/?person",
-          description: "CEO, XYZ Company",
-          profile: "https://linkedin.com/in/",
-        },
-      ],
-      hosts: [
-        {
-          name: "John Doe",
-          avatar: "https://source.unsplash.com/100x100/?person",
-          description: "CEO, XYZ Company",
-          profile: "https://linkedin.com/in/",
-        },
-        {
-          name: "John Doe",
-          avatar: "https://source.unsplash.com/200x200/?person",
-          description: "CEO, XYZ Company",
-          profile: "https://linkedin.com/in/",
-        },
-      ],
-      sponsors: [
-        {
-          name: "John Doe",
-          avatar: "https://source.unsplash.com/100x100/?person",
-          description: "CEO, XYZ Company",
-          profile: "https://linkedin.com/in/",
-        },
-        {
-          name: "John Doe",
-          avatar: "https://source.unsplash.com/100x300/?person",
-          description: "CEO, XYZ Company",
-          profile: "https://linkedin.com/in/",
-        },
-      ],
-    },
-    {
-      slug: "event-2",
-      title: "Event 2",
-      description: "Description of Event 1",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "SV Polytechnique College, Mumbai",
-      banner: "https://source.unsplash.com/1600x900/?business",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-3",
-      title: "Event 3",
-      description:
-        "Description of Event 3 github.com Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 Description of Event 3 ",
-      date: "2024-12-11",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Google Meet",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-4",
-      title: "Event 4",
-      description: "Description of Event 4",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "NP College, Delhi",
-      banner: "https://source.unsplash.com/1400x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-5",
-      title: "Event 5",
-      description: "Description of Event 5",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Zoom",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?business",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-6",
-      title: "Event 6 Event 6 Event 6 Event 6 Event 6 Event 6 Event 6 Event 6",
-      description: "Description of Event 6",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "SV Polytechnique College, Mumbai",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-7",
-      title: "Event 7",
-      description: "Description of Event 7",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Google Meet",
-      venue: "",
-      banner: "https://source.unsplash.com/1200x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-8",
-      title: "Event 8",
-      description: "Description of Event 8",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "NP College, Delhi",
-      banner: "https://source.unsplash.com/1600x900/?tech",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-9",
-      title: "Event 9",
-      description: "Description of Event 9",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Zoom",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-10",
-      title: "Event 10",
-      description: "Description of Event 10",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "SV Polytechnique College, Mumbai",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-11",
-      title: "Event 11",
-      description: "Description of Event 11",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Google Meet",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?startup",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-12",
-      title: "Event 12",
-      description: "Description of Event 12",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "NP College, Delhi",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-13",
-      title: "Event 13",
-      description: "Description of Event 13",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Zoom",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x950/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-14",
-      title: "Event 14",
-      description: "Description of Event 14",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "SV Polytechnique College, Mumbai",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-15",
-      title: "Event 15",
-      description: "Description of Event 15",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Google Meet",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-16",
-      title: "Event 16",
-      description: "Description of Event 16",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "NP College, Delhi",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-17",
-      title: "Event 17",
-      description: "Description of Event 17",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Zoom",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-18",
-      title: "Event 18",
-      description: "Description of Event 18",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "SV Polytechnique College, Mumbai",
-      banner: "https://source.unsplash.com/1600x1000",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-19",
-      title: "Event 19",
-      description: "Description of Event 19",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Virtual",
-      platform: "Google Meet",
-      venue: "",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-    {
-      slug: "event-20",
-      title: "Event 20",
-      description: "Description of Event 20",
-      date: "2022-12-12",
-      time: "12:00",
-      type: "Offline",
-      platform: "",
-      venue: "NP College, Delhi",
-      banner: "https://source.unsplash.com/1600x900/?event",
-      attendees: 0,
-      speakers: [],
-      hosts: [],
-      sponsors: [],
-    },
-  ]);
-
-  // const [events, setEvents] = useState([]);
+  const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const { slug } = useParams();
+
+  useEffect(() => {
+    setLoading(true);
+    server
+      .get(`/api/v1/event/${slug}`)
+      .then((res) => {
+        setEvent(res.data.event);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching event data:", error);
+        setLoading(false);
+      });
+  }, [slug]);
 
   // useEffect(() => {
   //   setLoading(true);
@@ -362,7 +34,6 @@ const EventDetails = () => {
   //   });
   // }, [slug]);
 
-  const event = events.find((event) => event.slug === slug);
   const monthNames = [
     "January",
     "February",
@@ -412,8 +83,7 @@ const EventDetails = () => {
                 key={key}
                 className="flex items-center gap-2 p-2 hover:bg-white/20 rounded-md"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 <img
                   src={speaker.avatar}
                   alt={speaker.name}
@@ -432,8 +102,7 @@ const EventDetails = () => {
           <div
             className={`flex flex-col py-4 border-t border-white/20 ${
               event?.hosts?.length == 0 ?? "hidden"
-            }`}
-          >
+            }`}>
             <h3 className="text-xl font-semibold">Hosts</h3>
             {event?.hosts?.map((host, key) => (
               <a
@@ -441,8 +110,7 @@ const EventDetails = () => {
                 key={key}
                 className="flex items-center gap-2 p-2 hover:bg-white/20 rounded-md"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 <img
                   src={host.avatar}
                   alt={host.name}
@@ -461,8 +129,7 @@ const EventDetails = () => {
           <div
             className={`border-t border-white/20 pt-4 ${
               event?.attendees?.length == 0 ?? "hidden"
-            }`}
-          >
+            }`}>
             <h3 className="text-xl font-semibold">Attendees</h3>
             <p>
               {event?.attendees != 0 &&
