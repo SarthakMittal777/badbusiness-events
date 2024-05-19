@@ -37,7 +37,7 @@ const Navbar = () => {
           className="rounded-md md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
           Community
         </a>
-        <div className="relative">
+        <div>
           <button
             onClick={toggleDropdown}
             className="rounded-md px-14 md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
