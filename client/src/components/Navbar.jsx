@@ -20,7 +20,7 @@ const Navbar = () => {
         />
         <span>Events</span>
       </Link>
-      <div className="flex text-sm md:text-md justify-center md:justify-end gap-2 md:gap-4 w-full [&>a]:w-1/3 md:[&>a]:w-auto text-center text-red-400">
+      <div className="flex text-sm md:text-md justify-center md:justify-end gap-4 md:gap-4 w-full [&>a]:w-1/3 md:[&>a]:w-auto text-center text-red-400">
         <a
           href="https://badbusiness.in"
           className="rounded-md md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
@@ -37,10 +37,15 @@ const Navbar = () => {
           className="rounded-md md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
           Community
         </a>
+        <Link
+          to="/register"
+          className="rounded-md md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
+          Join
+        </Link>
         <div>
           <button
             onClick={toggleDropdown}
-            className="rounded-md px-14 md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
+            className="rounded-md px-7 md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
             More
           </button>
           {isDropdownOpen && (
