@@ -4,6 +4,7 @@ import { Footer, Navbar } from "./components";
 import ComingSoon from "./components/ComingSoon";
 import Login from "./components/LoginPage";
 import Register from "./components/RegisterPage";
+import CreateEvent from "./components/EventForm";
 
 const AppRouter = () => {
   return (
@@ -19,6 +20,7 @@ const AppRouter = () => {
         <Route path="*" element={<h1>Not Found</h1>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/register-event" element={<CreateEvent />} />
       </Routes>
 
       <Footer />
