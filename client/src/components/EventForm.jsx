@@ -134,6 +134,7 @@ function CreateEvent() {
               <input
                 type="text"
                 value={eventName}
+                required
                 onChange={(e) => setEventName(e.target.value)}
                 className="w-full mt-2 px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
                 placeholder="Event Name"
@@ -437,7 +438,7 @@ function CreateEvent() {
           <div className="mt-4">
             <button
               type="submit"
-              className="w-full px-3 py-2 bg-neutral-200 text-black font-bold rounded-md">
+              className="w-full px-3 py-2 mt-6 bg-neutral-200 text-black font-bold rounded-md">
               Create Event
             </button>
           </div>

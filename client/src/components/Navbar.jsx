@@ -42,10 +42,17 @@ const Navbar = () => {
           className="rounded-md md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
           Join
         </Link>
+        <Link to="/register-event">
+          <div>
+            <button className="rounded-md px-2 md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
+              Register an Event
+            </button>
+          </div>
+        </Link>
         <div>
           <button
             onClick={toggleDropdown}
-            className="rounded-md px-7 md:px-4 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
+            className="rounded-md px-5 md:px-2 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
             More
           </button>
           {isDropdownOpen && (
