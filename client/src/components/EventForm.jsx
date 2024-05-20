@@ -13,8 +13,8 @@ function CreateEvent() {
   const [description, setDescription] = useState("");
   const [platform, setPlatform] = useState("");
   const [banner, setBanner] = useState("");
-  const [type, setType] = useState("");
-  const [listedBy, setListedBy] = useState("");
+  const [type, setType] = useState("virtual");
+  const [listedBy, setListedBy] = useState("individual");
   const [hosts, setHosts] = useState([
     { name: "", avatar: "", description: "", profile: "", type: "" },
   ]);
