@@ -53,7 +53,23 @@ const Navbar = () => {
           <button
             onClick={toggleDropdown}
             className="rounded-md px-5 md:px-2 py-0.5 md:py-1.5 border border-transparent hover:border-red-400">
-            More
+            <div className="flex items-center">
+              More
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+                className={`h-4 w-4 ml-2 mb-1 transition ${
+                  isDropdownOpen ? "-rotate-90" : "rotate-90"
+                }`}>
+                <path
+                  fillRule="evenodd"
+                  d="M10 3a1 1 0 0 1 .707.293l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414-1.414L14.586 10 10.293 5.707a1 1 0 0 1 0-1.414A1 1 0 0 1 10 3z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
           </button>
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-32 bg-white/85 border border-red-400 rounded-md shadow-lg mr-4">
