@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { server } from "../api";
+import LoginPopup from "./LoginPopup";
 
 function CreateEvent() {
   const [eventName, setEventName] = useState("");
@@ -24,12 +25,24 @@ function CreateEvent() {
   const [sponsors, setSponsors] = useState([
     { name: "", avatar: "", description: "", profile: "" },
   ]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      setIsPopupOpen(true);
+    }
+  }, []);
 
   const handleCreateEvent = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("accessToken");
+    if (!token) {
+      setIsPopupOpen(true);
+      return;
+    }
     try {
       const response = await server.post(
         "/api/v1/event/create",
@@ -119,6 +132,7 @@ function CreateEvent() {
 
   return (
     <div className="min-h-screen bg-zinc-800 text-white flex justify-center items-center p-4">
+      <LoginPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
       <div className="bg-neutral-600 p-8 rounded-lg shadow-lg max-w-4xl w-full">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center">

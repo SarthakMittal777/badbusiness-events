@@ -45,7 +45,7 @@ const Navbar = () => {
       <div
         className={`${
           isNavOpen ? "flex" : "hidden"
-        } md:flex flex-col ml-2 md:flex-row md:items-center w-fit px-3 md:px-4 text-white font-semibold md:font-normal md:w-auto md:justify-end mt-4 md:mt-0 absolute md:static top-20 left-0 md:top-auto md:left-auto bg-white/25 md:bg-transparent z-10 backdrop-blur-xl rounded-sm  md:gap-2`}>
+        } md:flex flex-col ml-2 md:flex-row md:items-center w-fit px-3 py-4 md:px-4 text-white font-semibold md:font-normal md:w-auto md:justify-end mt-4 md:mt-0 absolute md:static top-20 left-0 md:top-auto md:left-auto bg-white/25 md:bg-transparent z-10 backdrop-blur-xl rounded-sm  md:gap-2`}>
         <a
           href="https://badbusiness.in"
           className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
@@ -94,7 +94,7 @@ const Navbar = () => {
             </div>
           </button>
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-32 bg-white/85 border border-red-400 rounded-md shadow-lg">
+            <div className="absolute -left-3  mt-5 w-32 bg-white/85 border border-red-400 rounded-sm shadow-lg">
               <Link
                 to="/merchandise"
                 className="block px-3 py-2 text-red-700 font-medium hover:bg-red-100"
