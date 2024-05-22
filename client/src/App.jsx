@@ -1,7 +1,9 @@
 import AppRouter from "./AppRouter";
 import Lenis from "@studio-freight/lenis";
-
+import { useState } from "react";
 const lenis = new Lenis();
+import Navbar from "./components/Navbar";
+import LoginPopup from "./components/LoginPopup";
 
 // lenis.on("scroll", (e) => {
 //   console.log(e);
@@ -15,7 +17,20 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 const App = () => {
-  return <AppRouter />;
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  return (
+    <div>
+      {/* <Navbar setIsPopupOpen={setIsPopupOpen} /> */}
+      {isPopupOpen && (
+        <LoginPopup
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+        />
+      )}
+      <AppRouter setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} />
+    </div>
+  );
 };
 
 export default App;

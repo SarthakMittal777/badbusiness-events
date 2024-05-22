@@ -6,13 +6,12 @@ import Login from "./components/LoginPage";
 import Register from "./components/RegisterPage";
 import CreateEvent from "./components/EventForm";
 
-const AppRouter = () => {
+const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {
   return (
     <>
-      <Navbar />
-
+      <Navbar setIsPopupOpen={setIsPopupOpen} isPopupOpen={isPopupOpen} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setIsPopupOpen={setIsPopupOpen} />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/event/:slug" element={<Event />} />
         <Route path="/courses" element={<ComingSoon />} />

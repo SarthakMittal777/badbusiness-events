@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import LoginPopup from "./LoginPopup";
 
-const Navbar = () => {
+const Navbar = ({ setIsPopupOpen }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -11,6 +12,17 @@ const Navbar = () => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const navigate = useNavigate();
+
+  const handleRegisterEvent = () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      setIsPopupOpen(true);
+    } else {
+      navigate("/register-event");
+    }
   };
 
   return (
@@ -45,7 +57,7 @@ const Navbar = () => {
       <div
         className={`${
           isNavOpen ? "flex" : "hidden"
-        } md:flex flex-col ml-2 md:flex-row md:items-center w-fit px-3 py-4 md:px-4 text-white font-semibold md:font-normal md:w-auto md:justify-end mt-4 md:mt-0 absolute md:static top-20 left-0 md:top-auto md:left-auto bg-white/25 md:bg-transparent z-10 backdrop-blur-xl rounded-sm  md:gap-2`}>
+        } md:flex flex-col ml-2 md:flex-row md:items-center w-fit px-3 py-4 md:px-4 text-white font-semibold md:font-normal md:w-auto md:justify-end mt-4 md:mt-0 absolute md:static top-24 left-0 md:top-auto md:left-auto bg-white/25 md:bg-transparent z-10 backdrop-blur-xl rounded-sm  md:gap-2`}>
         <a
           href="https://badbusiness.in"
           className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
@@ -66,11 +78,12 @@ const Navbar = () => {
           className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
           Join
         </Link>
-        <Link to="/register-event">
-          <button className="block md:inline-block px-2 rounded-md py-2 md:px-4 md:py-1.5 border border-transparent hover:border-red-400">
-            Register an Event
-          </button>
-        </Link>
+        <button
+          className="block md:inline-block px-2 rounded-md py-2 md:px-4 md:py-1.5 border border-transparent hover:border-red-400"
+          onClick={handleRegisterEvent}>
+          Register an Event
+        </button>
+
         <div className="relative">
           <button
             onClick={toggleDropdown}
@@ -82,7 +95,7 @@ const Navbar = () => {
                 viewBox="0 0 20 20"
                 fill="currentColor"
                 aria-hidden="true"
-                className={`h-4 w-4 ml-2 mb-1 transition-transform ${
+                className={`h-4 w-4 ml-1 mb-1 transition-transform ${
                   isDropdownOpen ? "-rotate-90" : "rotate-90"
                 }`}>
                 <path
@@ -94,7 +107,7 @@ const Navbar = () => {
             </div>
           </button>
           {isDropdownOpen && (
-            <div className="absolute -left-3  mt-5 w-32 bg-white/85 border border-red-400 rounded-sm shadow-lg">
+            <div className="absolute md:right-0 mt-5 w-32 bg-white/85 border border-red-400 rounded-sm shadow-lg">
               <Link
                 to="/merchandise"
                 className="block px-3 py-2 text-red-700 font-medium hover:bg-red-100"

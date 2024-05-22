@@ -1,9 +1,9 @@
 import { HeroSection } from "../components";
 
-const Home = () => {
+const Home = ({ setIsPopupOpen }) => {
   return (
     <main className="px-4 py-4">
-      <HeroSection />
+      <HeroSection setIsPopupOpen={setIsPopupOpen} />
     </main>
   );
 };

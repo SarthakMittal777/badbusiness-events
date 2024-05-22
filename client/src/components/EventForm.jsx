@@ -132,7 +132,7 @@ function CreateEvent() {
 
   return (
     <div className="min-h-screen bg-zinc-800 text-white flex justify-center items-center p-4">
-      <LoginPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+      {/* <LoginPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} /> */}
       <div className="bg-neutral-600 p-8 rounded-lg shadow-lg max-w-4xl w-full">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center">
