@@ -249,7 +249,7 @@ function CreateEvent() {
                   className="w-full px-3 py-2 my-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
                   placeholder="Host Type"
                 />
-                <div className="flex justify-between gap-3">
+                <div className="flex justify-between gap-3 mt-3">
                   <button
                     type="button"
                     onClick={handleAddHost}
@@ -278,7 +278,7 @@ function CreateEvent() {
                   onChange={(e) =>
                     handleSpeakerChange(index, "name", e.target.value)
                   }
-                  className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
+                  className="w-full px-3 py-2 my-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
                   placeholder="Speaker Name"
                 />
                 <input
@@ -317,7 +317,7 @@ function CreateEvent() {
                   className="w-full px-3 py-2 my-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
                   placeholder="Speaker Type"
                 />
-                <div className="flex justify-between gap-3">
+                <div className="flex justify-between gap-3 mt-3">
                   <button
                     type="button"
                     onClick={handleAddSpeaker}
@@ -376,7 +376,7 @@ function CreateEvent() {
                   className="w-full px-3 py-2 my-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
                   placeholder="Sponsor Profile"
                 />
-                <div className="flex justify-between gap-3">
+                <div className="flex justify-between gap-3 mt-3">
                   <button
                     type="button"
                     onClick={handleAddSponsor}

@@ -25,3 +25,32 @@ body {
   );
   backdrop-filter: blur(5px);
 }
+
+.hamburger-icon {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  background: #000;
+  display: block;
+  height: 2px;
+  margin: 5px;
+  border-radius: 1px;
+  transition: 0.4s;
+}
+
+.hamburger-icon.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
