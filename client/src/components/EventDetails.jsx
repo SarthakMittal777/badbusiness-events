@@ -181,7 +181,9 @@ const EventDetails = () => {
             <div className="flex justify-start">
               <Link to={`/register/${slug}`} className="flex justify-start ">
                 <button className="px-3 py-1 w-full mt-5 bg-white/90 text-black font-semibold rounded-md">
-                  Register Now
+                  {event?.status === "pending"
+                    ? "Waiting for Approval"
+                    : "Register"}
                 </button>
               </Link>
             </div>

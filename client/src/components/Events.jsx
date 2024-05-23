@@ -9,7 +9,7 @@ const AllEvents = () => {
   useEffect(() => {
     setLoading(true);
     server
-      .get("/api/v1/event")
+      .get("/api/v1/event/all")
       .then((res) => {
         console.log(res.data);
         const events = res.data.events;
