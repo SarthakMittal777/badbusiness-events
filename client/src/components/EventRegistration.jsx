@@ -80,27 +80,48 @@ const RegisterEventForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-1" htmlFor="attendeeType">
-              Type
-            </label>
-            <select
-              id="attendeeType"
-              value={attendeeType}
-              onChange={(e) => setAttendeeType(e.target.value)}
-              required
-              className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800">
-              <option value="institute">Institute</option>
-              <option value="organization">Organization</option>
-            </select>
+            <label className="block mb-1">Type</label>
+            <div className="flex gap-5 mt-4 ">
+              <div className="flex gap-2">
+                <input
+                  type="radio"
+                  id="organization"
+                  name="attendeeType"
+                  value="organization"
+                  checked={attendeeType === "organization"}
+                  onChange={(e) => setAttendeeType(e.target.value)}
+                />
+                <label htmlFor="organization" className="text-lg">
+                  Proffesional
+                </label>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="radio"
+                  id="institute"
+                  name="attendeeType"
+                  value="institute"
+                  checked={attendeeType === "institute"}
+                  onChange={(e) => setAttendeeType(e.target.value)}
+                />
+                <label htmlFor="institute" className="text-lg">
+                  Student
+                </label>
+              </div>
+            </div>
           </div>
           <div className="mb-4">
             <label className="block mb-1" htmlFor="typeName">
-              Organization/ Institute Name
+              {attendeeType === "organization"
+                ? "Organization Name"
+                : "Institute Name"}
             </label>
             <input
               type="text"
               id="typeName"
-              placeholder="Enter Your Organization/ Institute Name"
+              placeholder={`Enter Your ${
+                attendeeType === "organization" ? "Organization" : "Institute"
+              } Name`}
               value={typeName}
               onChange={(e) => setTypeName(e.target.value)}
               required

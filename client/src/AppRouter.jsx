@@ -5,7 +5,6 @@ import ComingSoon from "./components/ComingSoon";
 import Login from "./components/LoginPage";
 import Register from "./components/RegisterPage";
 import CreateEvent from "./components/EventForm";
-
 import RegisterEventForm from "./components/EventRegistration";
 
 const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {

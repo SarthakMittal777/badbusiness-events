@@ -1,10 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { server } from "../api";
-import LoginPopup from "./LoginPopup";
 
 function CreateEvent() {
+  const navigate = useNavigate();
+  const pathLocation = useLocation();
+  const accessToken = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/login", { state: { from: pathLocation } });
+    }
+  }, [accessToken, navigate, pathLocation]);
+
   const [eventName, setEventName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [startTime, setStartTime] = useState("");
@@ -26,8 +35,6 @@ function CreateEvent() {
     { name: "", avatar: "", description: "", profile: "" },
   ]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
