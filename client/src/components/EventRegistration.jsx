@@ -7,7 +7,7 @@ const RegisterEventForm = () => {
   const [attendeeName, setAttendeeName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [attendeeType, setAttendeeType] = useState("individual");
+  const [attendeeType, setAttendeeType] = useState("organization");
   const [typeName, setTypeName] = useState("");
 
   const handleSubmit = async (e) => {
@@ -20,6 +20,7 @@ const RegisterEventForm = () => {
         attendeeType,
         typeName,
       });
+
       if (response.data.success) {
         alert("Registration successful!");
       } else {
@@ -85,7 +86,7 @@ const RegisterEventForm = () => {
           onChange={(e) => setAttendeeType(e.target.value)}
           required
           className="w-full border border-gray-300 px-3 py-2 rounded-lg">
-          <option value="individual">Individual</option>
+          <option value="institute">Institute</option>
           <option value="organization">Organization</option>
         </select>
       </div>
