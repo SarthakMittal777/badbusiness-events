@@ -36,19 +36,19 @@ function LoginPopup({ isOpen, onClose }) {
         <h2 className="text-4xl text-black font-bold mb-4 text-center cursor-default">
           Login Required!
         </h2>
-        <p className="text-center font-semibold text-2xl flex items-center justify-center mt-20 text-black/90 pointer-events-none">
+        <p className="text-center font-semibold text-xl md:text-2xl flex items-center justify-center mt-16 text-black/90 pointer-events-none">
           BAD Account Required. Please Login or Register using the buttons
           below.
         </p>
-        <div className="flex justify-center gap-5 mt-24 w-full">
+        <div className="flex justify-center gap-5 mt-20 w-full">
           <Link
             to="/login"
-            className="px-3 py-1 bg-white/90 text-black font-semibold rounded-md w-1/3 text-center">
+            className="px-3 py-2 bg-white/90 text-black font-semibold rounded-md w-1/2 md:w-1/3 text-center">
             Login
           </Link>
           <Link
             to="/register"
-            className="px-3 py-1 bg-white/90 text-black font-semibold rounded-md w-1/3 text-center">
+            className="px-3 py-2 bg-white/90 text-black font-semibold rounded-md w-1/2 md:w-1/3 text-center">
             Register
           </Link>
         </div>

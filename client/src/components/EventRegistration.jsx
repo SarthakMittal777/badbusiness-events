@@ -33,82 +33,84 @@ const RegisterEventForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-4 shadow-lg rounded-lg bg-white">
-      <h2 className="text-2xl font-semibold mb-4">Register for Event</h2>
-      <div className="mb-4">
-        <label className="block mb-1" htmlFor="attendeeName">
-          Name
-        </label>
-        <input
-          type="text"
-          id="attendeeName"
-          value={attendeeName}
-          onChange={(e) => setAttendeeName(e.target.value)}
-          required
-          className="w-full border border-gray-300 px-3 py-2 rounded-lg"
-        />
+    <div className="min-h-screen bg-zinc-800 text-white flex justify-center items-center p-4">
+      <div className="bg-neutral-600 p-8 rounded-lg shadow-lg max-w-4xl w-full">
+        <h2 className="text-3xl font-semibold mb-4">Register for Event</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block mb-1" htmlFor="attendeeName">
+              Name
+            </label>
+            <input
+              type="text"
+              id="attendeeName"
+              value={attendeeName}
+              onChange={(e) => setAttendeeName(e.target.value)}
+              required
+              className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-1" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-1" htmlFor="phone">
+              Phone
+            </label>
+            <input
+              type="text"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+              className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-1" htmlFor="attendeeType">
+              Type
+            </label>
+            <select
+              id="attendeeType"
+              value={attendeeType}
+              onChange={(e) => setAttendeeType(e.target.value)}
+              required
+              className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800">
+              <option value="institute">Institute</option>
+              <option value="organization">Organization</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block mb-1" htmlFor="typeName">
+              Type Name
+            </label>
+            <input
+              type="text"
+              id="typeName"
+              value={typeName}
+              onChange={(e) => setTypeName(e.target.value)}
+              required
+              className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full px-3 py-2 mt-6 bg-neutral-200 text-black font-bold rounded-md">
+            Register
+          </button>
+        </form>
       </div>
-      <div className="mb-4">
-        <label className="block mb-1" htmlFor="email">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="w-full border border-gray-300 px-3 py-2 rounded-lg"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1" htmlFor="phone">
-          Phone
-        </label>
-        <input
-          type="text"
-          id="phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-          className="w-full border border-gray-300 px-3 py-2 rounded-lg"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1" htmlFor="attendeeType">
-          Type
-        </label>
-        <select
-          id="attendeeType"
-          value={attendeeType}
-          onChange={(e) => setAttendeeType(e.target.value)}
-          required
-          className="w-full border border-gray-300 px-3 py-2 rounded-lg">
-          <option value="institute">Institute</option>
-          <option value="organization">Organization</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1" htmlFor="typeName">
-          Type Name
-        </label>
-        <input
-          type="text"
-          id="typeName"
-          value={typeName}
-          onChange={(e) => setTypeName(e.target.value)}
-          required
-          className="w-full border border-gray-300 px-3 py-2 rounded-lg"
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
-        Register
-      </button>
-    </form>
+    </div>
   );
 };
 
