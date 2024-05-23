@@ -13,7 +13,7 @@ const RegisterEventForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await server.post(`/api/v1/event/register/${slug}`, {
+      const response = await server.put(`/api/v1/event/register/${slug}`, {
         attendeeName,
         email,
         phone,
@@ -34,7 +34,7 @@ const RegisterEventForm = () => {
 
   return (
     <div className="min-h-screen bg-zinc-800 text-white flex justify-center items-center p-4">
-      <div className="bg-neutral-600 p-8 rounded-lg shadow-lg max-w-4xl w-full">
+      <div className="bg-neutral-600/80 p-8 rounded-lg shadow-lg max-w-4xl w-full">
         <h2 className="text-3xl font-semibold mb-4">Register for Event</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -44,6 +44,7 @@ const RegisterEventForm = () => {
             <input
               type="text"
               id="attendeeName"
+              placeholder="Enter Your Name"
               value={attendeeName}
               onChange={(e) => setAttendeeName(e.target.value)}
               required
@@ -57,6 +58,7 @@ const RegisterEventForm = () => {
             <input
               type="email"
               id="email"
+              placeholder="Enter Your Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -70,6 +72,7 @@ const RegisterEventForm = () => {
             <input
               type="text"
               id="phone"
+              placeholder="Enter Your Phone No."
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
@@ -92,11 +95,12 @@ const RegisterEventForm = () => {
           </div>
           <div className="mb-4">
             <label className="block mb-1" htmlFor="typeName">
-              Type Name
+              Organization/ Institute Name
             </label>
             <input
               type="text"
               id="typeName"
+              placeholder="Enter Your Organization/ Institute Name"
               value={typeName}
               onChange={(e) => setTypeName(e.target.value)}
               required
