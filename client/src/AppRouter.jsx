@@ -6,6 +6,8 @@ import Login from "./components/LoginPage";
 import Register from "./components/RegisterPage";
 import CreateEvent from "./components/EventForm";
 
+import RegisterEventForm from "./components/EventRegistration";
+
 const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {
   return (
     <>
@@ -20,6 +22,7 @@ const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/register-event" element={<CreateEvent />} />
+        <Route path="/register/:slug" element={<RegisterEventForm />} />
       </Routes>
 
       <Footer />

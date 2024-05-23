@@ -178,6 +178,13 @@ const EventDetails = () => {
                 </p>
               </div>
             </div>
+            <div className="flex justify-start">
+              <Link to={`/register/${slug}`} className="flex justify-start ">
+                <button className="px-3 py-1 w-full mt-5 bg-white/90 text-black font-semibold rounded-md">
+                  Register Now
+                </button>
+              </Link>
+            </div>
           </div>
 
           <div className="pt-4">
