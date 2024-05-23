@@ -28,7 +28,10 @@ const RegisterEventForm = () => {
       }
     } catch (error) {
       console.error(error);
-      alert("An error occurred. Please try again later.");
+      alert(
+        error.response.data.message ||
+          "An error occurred. Please try again later."
+      );
     }
   };
 
