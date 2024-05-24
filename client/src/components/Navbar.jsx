@@ -25,6 +25,11 @@ const Navbar = ({ setIsPopupOpen }) => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/");
+  };
+
   return (
     <nav className="relative flex flex-col md:flex-row justify-between items-center h-24 md:h-20 px-4 py-2 border-b border-red-500">
       <Link
@@ -73,17 +78,24 @@ const Navbar = ({ setIsPopupOpen }) => {
           className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
           Community
         </a>
-        <Link
-          to="/register"
-          className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
-          Join
-        </Link>
         <button
           className="block md:inline-block px-2 rounded-md py-2 md:px-4 md:py-1.5 border border-transparent hover:border-red-400"
           onClick={handleRegisterEvent}>
           Register an Event
         </button>
-
+        {localStorage.getItem("accessToken") ? (
+          <button
+            className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400"
+            onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <Link
+            to="/register"
+            className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
+            Join
+          </Link>
+        )}
         <div className="relative">
           <button
             onClick={toggleDropdown}
