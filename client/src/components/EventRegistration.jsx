@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useParams } from "react-router";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router";
 import { server } from "../api";
 
 const RegisterEventForm = () => {
@@ -9,10 +9,32 @@ const RegisterEventForm = () => {
   const [phone, setPhone] = useState("");
   const [attendeeType, setAttendeeType] = useState("organization");
   const [typeName, setTypeName] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
+      const eventResponse = await server.get(`/api/v1/event/${slug}`);
+      const event = eventResponse.data.event;
+
+      const eventDateTime = new Date(
+        `${event.date}T${event.time}:00Z`
+      ).toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+
+      if (event.status !== "accepted") {
+        alert("Event is not open for registration yet.");
+        return;
+      }
+
+      if (new Date() >= new Date(eventDateTime)) {
+        alert("Event has already started. You cannot register for this event.");
+        return;
+      }
+
       const response = await server.put(`/api/v1/event/register/${slug}`, {
         attendeeName,
         email,
@@ -22,7 +44,17 @@ const RegisterEventForm = () => {
       });
 
       if (response.data.success) {
-        alert("Registration successful!");
+        setSuccess(true);
+        setTimeout(() => {
+          setAttendeeName("");
+          setEmail("");
+          setPhone("");
+          setAttendeeType("organization");
+          setTypeName("");
+          setSuccess(false);
+          alert("Registration successful. Redirecting to event page...");
+          navigate(`/event/${slug}`);
+        }, 1000);
       } else {
         alert("Registration failed. Please try again.");
       }
@@ -32,6 +64,8 @@ const RegisterEventForm = () => {
         error.response.data.message ||
           "An error occurred. Please try again later."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -131,11 +165,19 @@ const RegisterEventForm = () => {
               className="w-full px-3 py-2 bg-neutral-700 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-800"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full px-3 py-2 mt-6 bg-neutral-200 text-black font-bold rounded-md">
-            Register
-          </button>
+          {loading ? (
+            <button
+              type="submit"
+              className="w-full px-3 py-2 mt-6 bg-neutral-200 text-black font-bold rounded-md cursor-none">
+              Registering
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="w-full px-3 py-2 mt-6 bg-neutral-200 text-black font-bold rounded-md">
+              Register
+            </button>
+          )}
         </form>
       </div>
     </div>

@@ -43,12 +43,14 @@ function LoginPopup({ isOpen, onClose }) {
         <div className="flex justify-center gap-5 mt-20 w-full">
           <Link
             to="/login"
-            className="px-3 py-2 bg-white/90 text-black font-semibold rounded-md w-1/2 md:w-1/3 text-center">
+            className="px-3 py-2 bg-white/90 text-black font-semibold rounded-md w-1/2 md:w-1/3 text-center"
+            onClick={handleClose}>
             Login
           </Link>
           <Link
             to="/register"
-            className="px-3 py-2 bg-white/90 text-black font-semibold rounded-md w-1/2 md:w-1/3 text-center">
+            className="px-3 py-2 bg-white/90 text-black font-semibold rounded-md w-1/2 md:w-1/3 text-center"
+            onClick={handleClose}>
             Register
           </Link>
         </div>

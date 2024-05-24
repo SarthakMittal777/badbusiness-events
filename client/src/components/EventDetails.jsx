@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Linkify from "linkify-react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { GoLocation } from "react-icons/go";
 import { server } from "../api";
 
@@ -25,14 +24,21 @@ const EventDetails = () => {
       });
   }, [slug]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   server.post(`/events/`, { slug }).then((res) => {
-  //     console.log(res.data);
-  //     setEvents(res.data);
-  //     setLoading(false);
-  //   });
-  // }, [slug]);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!event) {
+    return <p>Event not found</p>;
+  }
+
+  const eventDateTime = new Date(
+    event.date + "T" + event.time + "Z"
+  ).toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+  const currentDateTime = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Kolkata",
+  });
+  const isEventPassed = eventDateTime <= currentDateTime;
 
   const monthNames = [
     "January",
@@ -63,7 +69,6 @@ const EventDetails = () => {
     rel: "noopener noreferrer",
     className: "text-blue-400",
   };
-
   return (
     <div className="w-full md:w-8/12 md:bg-white/10 mx-auto rounded-md md:p-8">
       {/* <Link to="/explore">Back to Explore</Link> */}
@@ -180,9 +185,13 @@ const EventDetails = () => {
             </div>
             <div className="flex justify-start">
               <Link to={`/register/${slug}`} className="flex justify-start ">
-                <button className="px-3 py-1 w-full mt-5 bg-white/90 text-black font-semibold rounded-md">
-                  {event?.status === "pending"
+                <button
+                  className="px-3 py-1 w-full mt-5 bg-white/90 text-black font-semibold rounded-md"
+                  disabled={isEventPassed || event.status === "pending"}>
+                  {event.status === "pending"
                     ? "Waiting for Approval"
+                    : isEventPassed
+                    ? "Event has ended"
                     : "Register"}
                 </button>
               </Link>
