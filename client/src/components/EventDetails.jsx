@@ -140,6 +140,30 @@ const EventDetails = () => {
             )}
           </div>
           <div
+            className={`flex flex-col py-4 border-t border-white/20 ${
+              event?.sponsors?.length == 0 ? "hidden" : ""
+            }`}>
+            <h3 className="text-xl font-semibold">Sponsors</h3>
+            {event?.sponsors?.map((sponsor, key) => (
+              <a
+                href={sponsor.profile}
+                key={key}
+                className="flex items-center gap-2 p-2 hover:bg-white/20 rounded-md"
+                target="_blank"
+                rel="noopener noreferrer">
+                <img
+                  src={sponsor.avatar}
+                  alt={sponsor.name}
+                  className="w-8 h-8 rounded-full bg-center object-cover"
+                />
+                <div>
+                  <h5 className="text-gray-200">{sponsor.name}</h5>
+                  <p className="text-xs">{sponsor.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div
             className={`border-t border-white/20 pt-4 ${
               event?.attendees?.length == 0 ?? "hidden"
             }`}>
