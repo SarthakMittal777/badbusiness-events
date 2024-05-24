@@ -11,7 +11,7 @@ const AllEvents = () => {
     server
       .get("/api/v1/event")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         const events = res.data.events;
         setEvents(events);
         setLoading(false);

@@ -32,13 +32,21 @@ const EventDetails = () => {
     return <p>Event not found</p>;
   }
 
-  const eventDateTime = new Date(
-    event.date + "T" + event.time + "Z"
-  ).toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
-  const currentDateTime = new Date().toLocaleString("en-US", {
-    timeZone: "Asia/Kolkata",
-  });
+  function setTimeOnDate(date, time) {
+    const [hours, minutes] = time.split(":").map(Number);
+    date.setHours(hours, minutes, 0, 0);
+    return date;
+  }
+
+  const eventDate = new Date(event.date);
+  const eventDateTime = setTimeOnDate(eventDate, event.time).getTime();
+  console.log("eventDateTime", eventDateTime);
+
+  const currentDateTime = Date.now();
+  console.log("currentDateTime", currentDateTime);
+
   const isEventPassed = eventDateTime <= currentDateTime;
+  console.log("isEventPassed", isEventPassed);
 
   const monthNames = [
     "January",
