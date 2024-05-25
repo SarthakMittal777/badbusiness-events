@@ -1,8 +1,18 @@
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router";
 import { server } from "../api";
 
 const RegisterEventForm = () => {
+  const navigate = useNavigate();
+  const pathLocation = useLocation();
+  const accessToken = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/login", { state: { from: pathLocation } });
+    }
+  }, [accessToken, navigate, pathLocation]);
+
   const { slug } = useParams();
   const [attendeeName, setAttendeeName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,8 +21,6 @@ const RegisterEventForm = () => {
   const [typeName, setTypeName] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -129,7 +137,7 @@ const RegisterEventForm = () => {
                   onChange={(e) => setAttendeeType(e.target.value)}
                 />
                 <label htmlFor="organization" className="text-lg">
-                  Proffesional
+                  Professional
                 </label>
               </div>
               <div className="flex gap-2">
