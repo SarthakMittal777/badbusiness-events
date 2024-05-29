@@ -10,7 +10,24 @@ const RegisterEventForm = () => {
   useEffect(() => {
     if (!accessToken) {
       navigate("/login", { state: { from: pathLocation } });
+      return;
     }
+    const fetchUserData = async () => {
+      try {
+        const response = await server.get("/api/v1/user/profile", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        const user = response.data.user;
+        setAttendeeName(user.username);
+        setEmail(user.email);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        alert("Failed to fetch user data. Please try again later.");
+      }
+    };
+    fetchUserData();
   }, [accessToken, navigate, pathLocation]);
 
   const { slug } = useParams();
