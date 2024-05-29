@@ -36,6 +36,7 @@ const RegisterEventForm = () => {
   const [phone, setPhone] = useState("");
   const [attendeeType, setAttendeeType] = useState("organization");
   const [typeName, setTypeName] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 

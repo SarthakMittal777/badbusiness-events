@@ -60,6 +60,11 @@ function Login() {
             className="w-full py-2 mb-4 mt-10 bg-blue-600 hover:bg-blue-700 text-white rounded-md">
             Login
           </button>
+          <Link
+            to="/forgot-password"
+            className="text-white text-center block mb-4">
+            Forgot Password?
+          </Link>
         </form>
         <p className="text-gray-400">
           Don&apos;t have an account yet?{" "}

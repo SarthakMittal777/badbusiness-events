@@ -7,6 +7,8 @@ import Register from "./components/RegisterPage";
 import CreateEvent from "./components/EventForm";
 import RegisterEventForm from "./components/EventRegistration";
 import Events from "./components/Events";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 
 const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {
   return (
@@ -24,6 +26,8 @@ const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {
         <Route path="/register-event" element={<CreateEvent />} />
         <Route path="/register/:slug" element={<RegisterEventForm />} />
         <Route path="/event/all" element={<Events />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
 
       <Footer />
