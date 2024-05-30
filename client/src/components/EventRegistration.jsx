@@ -61,13 +61,21 @@ const RegisterEventForm = () => {
         return;
       }
 
-      const response = await server.put(`/api/v1/event/register/${slug}`, {
-        attendeeName,
-        email,
-        phone,
-        attendeeType,
-        typeName,
-      });
+      const response = await server.put(
+        `/api/v1/event/register/${slug}`,
+        {
+          attendeeName,
+          email,
+          phone,
+          attendeeType,
+          typeName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
       if (response.data.success) {
         setSuccess(true);

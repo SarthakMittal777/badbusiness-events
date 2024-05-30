@@ -9,6 +9,7 @@ import RegisterEventForm from "./components/EventRegistration";
 import Events from "./components/Events";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import UserProfile from "./components/UserProfile";
 
 const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {
   return (
@@ -28,6 +29,7 @@ const AppRouter = ({ setIsPopupOpen, isPopupOpen }) => {
         <Route path="/event/all" element={<Events />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/profile/:userId" element={<UserProfile />} />
       </Routes>
 
       <Footer />

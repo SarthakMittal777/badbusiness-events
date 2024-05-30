@@ -19,10 +19,10 @@ const EventCard = ({ event }) => {
         {event?.description}
       </p>
       <div className="flex justify-between text-sm w-64 pt-2">
-        <span className="py-0.5 rounded-full">
+        <span className="py-0.5 rounded-full text-gray-200">
           {new Date(event?.date).toDateString()}
         </span>
-        <span className="bg-white/10 px-2 py-0.5 rounded-full">
+        <span className="bg-white/10 px-2 py-0.5 rounded-full text-gray-200">
           {event?.type}
         </span>
       </div>

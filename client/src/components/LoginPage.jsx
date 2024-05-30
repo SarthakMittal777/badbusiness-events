@@ -16,6 +16,13 @@ function Login() {
       console.log(res.data);
       alert("Login Successful");
       navigate("/");
+      const user = await server.get("/api/v1/user/profile", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      // console.log(user.data);
+      localStorage.setItem("user", JSON.stringify(user.data));
     } catch (err) {
       console.log(err);
       alert("Failed to login");

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoginPopup from "./LoginPopup";
+import { FiUserCheck } from "react-icons/fi";
 
 const Navbar = ({ setIsPopupOpen }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -12,6 +13,10 @@ const Navbar = ({ setIsPopupOpen }) => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleProfile = () => {
+    setIsProfileOpen(!isProfileOpen);
   };
 
   const navigate = useNavigate();
@@ -25,8 +30,11 @@ const Navbar = ({ setIsPopupOpen }) => {
     }
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
     navigate("/");
   };
 
@@ -83,23 +91,10 @@ const Navbar = ({ setIsPopupOpen }) => {
           onClick={handleRegisterEvent}>
           Register an Event
         </button>
-        {localStorage.getItem("accessToken") ? (
-          <button
-            className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400"
-            onClick={handleLogout}>
-            Logout
-          </button>
-        ) : (
-          <Link
-            to="/register"
-            className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
-            Join
-          </Link>
-        )}
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="block md:inline-block rounded-md px-2 py-2 md:px-2 md:py-1.5 border border-transparent hover:border-red-400">
+            className="block md:inline-block rounded-md py-2 px-2 md:py-1.5 border border-transparent hover:border-red-400">
             <div className="flex items-center">
               More
               <svg
@@ -135,6 +130,44 @@ const Navbar = ({ setIsPopupOpen }) => {
             </div>
           )}
         </div>
+        {localStorage.getItem("accessToken") ? (
+          <div className="relative">
+            <button
+              onClick={toggleProfile}
+              className="flex items-center rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+              <img
+                className="h-8 w-8 rounded-full"
+                src="https://via.placeholder.com/150"
+                alt="User"
+              />
+              {/* <FiUserCheck /> */}
+            </button>
+            {isProfileOpen && (
+              <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+                <Link
+                  to={`/profile/${user?.user._id}`}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => setIsProfileOpen(false)}>
+                  Profile
+                </Link>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsProfileOpen(false);
+                  }}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  Sign Out
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link
+            to="/register"
+            className="block md:inline-block rounded-md px-2 md:px-4 py-2 md:py-1.5 border border-transparent hover:border-red-400">
+            Join
+          </Link>
+        )}
       </div>
     </nav>
   );
