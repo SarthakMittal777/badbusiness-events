@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { EventCard } from "./";
 import { server } from "../api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
@@ -18,13 +20,14 @@ const AllEvents = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Failed to fetch events");
+        toast.error("Failed to fetch events");
         setLoading(false);
       });
   }, []);
 
   return (
     <div className="text-center">
+      <ToastContainer />
       <div className="py-4">
         <h2 className="text-3xl font-semibold text-gray-200">
           Explore the&nbsp;

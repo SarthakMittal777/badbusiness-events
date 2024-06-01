@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { server } from "../api";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -17,16 +19,17 @@ function Register() {
         password,
       };
       await server.post("/api/v1/user/register", payload);
-      alert("Registration Successful");
+      toast.success("Registration Successful");
       navigate("/login");
     } catch (err) {
       console.error("Error:", err.response ? err.response.data : err.message);
-      alert("Failed to Register");
+      toast.error("Failed to register");
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 to-gray-700">
+      <ToastContainer />
       <div className="bg-transparent p-8 rounded-lg shadow-lg max-w-sm w-full border border-white/5 shadow-neutral-800">
         <div className="text-center mb-8">
           <img

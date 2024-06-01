@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { server } from "../api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CreateEvent() {
   const navigate = useNavigate();
@@ -74,12 +76,12 @@ function CreateEvent() {
         }
       );
       if (response.data.success) {
-        alert("Event created successfully");
+        toast.success("Event created successfully");
         navigate("/");
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to create event");
+      toast.error("Failed to create event");
     }
   };
 
@@ -139,7 +141,7 @@ function CreateEvent() {
 
   return (
     <div className="min-h-screen bg-zinc-800 text-white flex justify-center items-center p-4">
-      {/* <LoginPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} /> */}
+      <ToastContainer />
       <div className="bg-neutral-600 p-8 rounded-lg shadow-lg max-w-4xl w-full">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center">

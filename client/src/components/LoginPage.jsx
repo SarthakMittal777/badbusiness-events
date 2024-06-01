@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { server } from "../api";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,7 +16,7 @@ function Login() {
       const { accessToken } = res.data;
       localStorage.setItem("accessToken", accessToken);
       console.log(res.data);
-      alert("Login Successful");
+      toast.success("Login Successful");
       navigate("/");
       const user = await server.get("/api/v1/user/profile", {
         headers: {
@@ -22,15 +24,23 @@ function Login() {
         },
       });
       // console.log(user.data);
-      localStorage.setItem("user", JSON.stringify(user.data));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          username: user.data.user.username,
+          email: user.data.user.email,
+          id: user.data.user._id,
+        })
+      );
     } catch (err) {
       console.log(err);
-      alert("Failed to login");
+      toast.error("Failed to login");
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 to-gray-700">
+      <ToastContainer />
       <div className="bg-transparent p-8 rounded-lg shadow-lg max-w-sm w-full border border-white/5 shadow-neutral-800">
         <div className="text-center mb-8">
           <img

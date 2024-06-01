@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router";
 import { server } from "../api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterEventForm = () => {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const RegisterEventForm = () => {
         setEmail(user.email);
       } catch (error) {
         console.error("Error fetching user data:", error);
-        alert("Failed to fetch user data. Please try again later.");
+        toast.error("Failed to fetch user data. Please try again later.");
       }
     };
     fetchUserData();
@@ -52,12 +54,16 @@ const RegisterEventForm = () => {
       ).toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
 
       if (event.status !== "accepted") {
-        alert("Event is not open for registration yet.");
+        toast.error(
+          "Event is not yet accepted. You cannot register for this event."
+        );
         return;
       }
 
       if (new Date() >= new Date(eventDateTime)) {
-        alert("Event has already started. You cannot register for this event.");
+        toast.error(
+          "Event has already started. You cannot register for this event."
+        );
         return;
       }
 
@@ -86,15 +92,15 @@ const RegisterEventForm = () => {
           setAttendeeType("organization");
           setTypeName("");
           setSuccess(false);
-          alert("Registration successful. Redirecting to event page...");
+          toast.success("Registration successful!");
           navigate(`/event/${slug}`);
         }, 1000);
       } else {
-        alert("Registration failed. Please try again.");
+        toast.error("Registration failed. Please try again.");
       }
     } catch (error) {
       console.error(error);
-      alert(
+      toast.error(
         error.response.data.message ||
           "An error occurred. Please try again later."
       );
@@ -105,6 +111,7 @@ const RegisterEventForm = () => {
 
   return (
     <div className="min-h-screen bg-zinc-800 text-white flex justify-center items-center p-4">
+      <ToastContainer />
       <div className="bg-neutral-600/80 p-8 rounded-lg shadow-lg max-w-4xl w-full">
         <h2 className="text-3xl font-semibold mb-4">Register for Event</h2>
         <form onSubmit={handleSubmit}>

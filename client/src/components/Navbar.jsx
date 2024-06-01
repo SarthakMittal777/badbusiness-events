@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiUserCheck } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 
 const Navbar = ({ setIsPopupOpen }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -132,21 +132,16 @@ const Navbar = ({ setIsPopupOpen }) => {
         </div>
         {localStorage.getItem("accessToken") ? (
           <div className="relative">
-            <button
-              onClick={toggleProfile}
-              className="flex items-center rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-              <img
-                className="h-8 w-8 rounded-full"
-                src="https://via.placeholder.com/150"
-                alt="User"
-              />
-              {/* <FiUserCheck /> */}
+            <button onClick={toggleProfile} className="flex items-center px-4">
+              <div className="p-1 scale-150 border rounded-full">
+                <FiUser />
+              </div>
             </button>
             {isProfileOpen && (
-              <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+              <div className="absolute mt-4 w-[9vh] md:right-2 rounded-lg shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
                 <Link
-                  to={`/profile/${user?.user._id}`}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  to={`/profile/${user?.id}`}
+                  className="block py-2 w-full text-center text-sm text-neutral-900 font-semibold hover:bg-gray-200"
                   onClick={() => setIsProfileOpen(false)}>
                   Profile
                 </Link>
@@ -155,7 +150,7 @@ const Navbar = ({ setIsPopupOpen }) => {
                     handleLogout();
                     setIsProfileOpen(false);
                   }}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  className="block w-full py-2 text-sm text-neutral-900 font-semibold hover:bg-gray-200">
                   Sign Out
                 </button>
               </div>

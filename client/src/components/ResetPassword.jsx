@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { server } from "../api";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ResetPassword = () => {
   const [username, setUsername] = useState("");
@@ -19,17 +21,18 @@ const ResetPassword = () => {
         newPassword,
       });
       if (res.data.success) {
-        alert(res.data.message);
+        toast.success("Password reset successful");
         navigate("/login");
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to reset password");
+      toast.error("Failed to reset password");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-800">
+      <ToastContainer />
       <div className="bg-gray-700 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-white text-2xl mb-4">Reset Password</h2>
         <form onSubmit={handleResetPassword}>
